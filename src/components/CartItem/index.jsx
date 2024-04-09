@@ -1,21 +1,29 @@
 import propTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
+import {CloseButton, NormalButton} from '../Button/index' 
 
 const useStyles = createUseStyles({
+    CartItem: {
+        display: 'flex',
+        padding: 10,
+        alignItems: 'center',
+        columnGap: 30,
+        backgroundColor: 'yellow',
+    },
+    column: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
     counter: {
         display: 'flex',
-        width: '100px',
-        columGap: '10px',
-        color: 'green',
+        columGap: 10,
     },
-    value: ({ item }) => {
+    value({ item }) {
         return {
-            color: item.value ? 'red' : 'green',
-        }
-    },
-    red: {
-        color: 'red',
-        fontWeight: 800,
+            color: !item.count ? 'red' : 'green',
+            fontWeight: !item.count ? 800 : 400,
+            padding: 10,
+        };
     },
 });
 
@@ -25,9 +33,11 @@ const CartItem = ({ item }) => {
     const amount = item.count * item.price;
     
     return (
-        <div className='cart-item'>
-            <span>{item.name} </span>
-            <span>{item.price}$</span>
+        <div className={styles.CartItem}>
+            <div className={styles.column}>
+                <span>{item.name} </span>
+                <span>{item.price}$</span>
+            </div>
 
             <div className={styles.counter}>
                 <span>
@@ -38,7 +48,8 @@ const CartItem = ({ item }) => {
             </div>
 
             <span>{amount}$</span>
-            <button>x</button>
+            <CloseButton item={item}/>
+            <NormalButton/>
         </div>
     );
 };
