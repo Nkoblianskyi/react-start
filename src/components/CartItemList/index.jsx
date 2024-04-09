@@ -3,10 +3,10 @@ import propTypes from 'prop-types';
 import CartItem from '../CartItem';
 import styles from './style.module.css';
 
-const CartItemList = ({ items }) => (
+const CartItemList = ({ items, onRemoveItem }) => (
     <div className={styles.cartItemList}>
         {items.map((item) => (
-            <CartItem key={item.id} item={item} />
+            <CartItem key={item.id} item={item} onRemoveItem={onRemoveItem} />
         ))}
     </div>
 );

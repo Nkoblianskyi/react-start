@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-import {CloseButton, NormalButton} from '../Button/index' 
+import { CloseButton } from '../Button/index' 
 
 const useStyles = createUseStyles({
     CartItem: {
@@ -27,7 +27,7 @@ const useStyles = createUseStyles({
     },
 });
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, onRemoveItem }) => {
     const styles =useStyles({ item });
 
     const amount = item.count * item.price;
@@ -48,8 +48,7 @@ const CartItem = ({ item }) => {
             </div>
 
             <span>{amount}$</span>
-            <CloseButton item={item}/>
-            <NormalButton/>
+            <CloseButton item={item} onRemoveItem={onRemoveItem}/>
         </div>
     );
 };
