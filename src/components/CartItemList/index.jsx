@@ -1,20 +1,28 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import CartItem from '../CartItem';
 import styles from './style.module.css';
 
-const CartItemList = ({ items, onRemoveItem }) => (
+//onRemoveItem, onDecrement, onIncrement = ...rest
+const CartItemList = ({ items, ...rest }) => (
     <div className={styles.cartItemList}>
         {items.map((item) => (
-            <CartItem key={item.id} item={item} onRemoveItem={onRemoveItem} />
+            <CartItem 
+            key={item.id}
+            item={item}
+            {...rest}
+            />
         ))}
     </div>
 );
 
 CartItemList.propTypes = {
-    items: propTypes.arrayOf(
-        propTypes.shape({
-            id: propTypes.string.isRequired,
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string,
+            price: PropTypes.number,
+            count: PropTypes.number,
         })
     ),
 };

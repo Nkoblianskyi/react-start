@@ -1,5 +1,5 @@
 
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './style.module.css';
 
 const TotalAmount = ({ items }) => {
@@ -9,12 +9,12 @@ const TotalAmount = ({ items }) => {
 };
 
 TotalAmount.propTypes = {
-    items: propTypes.arrayOf(
-        propTypes.shape({
-            count: propTypes.number.isRequired,
-            price: propTypes.number.isRequired,
-        })
-    ),
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            count: PropTypes.number,
+            price: PropTypes.number,
+        }).isRequired
+    ).isRequired
 };
 
 export default TotalAmount;

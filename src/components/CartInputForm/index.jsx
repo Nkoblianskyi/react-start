@@ -4,16 +4,16 @@ const CartInputForm = () => (
     <div className={styles.cartInputForm}>
         <form> 
             <label className={styles.label}> 
-                <span>name</span>
+                <span className={styles.span}>name</span>
                 <input type='text'></input>
             </label>
 
             <label className={styles.label}> 
-                <span>price</span>
+                <span className={styles.span}>price</span>
                 <input type='number'></input>
             </label>
 
-            <button type='submit'>+add</button>
+            <button className={styles.buttonAdd} type='submit'>+add</button>
         </form>
     </div>
 );

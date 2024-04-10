@@ -1,6 +1,7 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
-import { CloseButton } from '../Button/index' 
+import { CloseButton } from '../Button/index'
+import styles from './style.module.scss'
 
 const useStyles = createUseStyles({
     CartItem: {
@@ -8,7 +9,9 @@ const useStyles = createUseStyles({
         padding: 10,
         alignItems: 'center',
         columnGap: 30,
-        backgroundColor: 'yellow',
+        backgroundColor: 'aqua',
+        width: '100%',
+        justifyContent: 'space-between',
     },
     column: {
         display: 'flex',
@@ -27,11 +30,14 @@ const useStyles = createUseStyles({
     },
 });
 
-const CartItem = ({ item, onRemoveItem }) => {
+const CartItem = ({ item, onRemoveItem, onChangeCount }) => {
     const styles =useStyles({ item });
-
     const amount = item.count * item.price;
     
+    const decrement = () => onChangeCount(item.id, -1);
+    const increment = () => onChangeCount(item.id, +1);
+    const remove = () => onRemoveItem(item.id);
+
     return (
         <div className={styles.CartItem}>
             <div className={styles.column}>
@@ -41,24 +47,27 @@ const CartItem = ({ item, onRemoveItem }) => {
 
             <div className={styles.counter}>
                 <span>
-                    <button>-</button>
+                    <button onClick={decrement}>-</button>
                         <span className={styles.value}>{item.count}</span>
-                    <button>+</button>
+                    <button onClick={increment}>+</button>
                 </span>
             </div>
 
             <span>{amount}$</span>
-            <CloseButton item={item} onRemoveItem={onRemoveItem}/>
+            <CloseButton item={item} onRemoveItem={remove}/>
         </div>
     );
 };
 
 CartItem.propTypes = {
-    item: propTypes.shape({
-            name: propTypes.string.isRequired,
-            price: propTypes.number.isRequired,
-            count: propTypes.number.isRequired,
+    item: PropTypes.shape({
+        id: PropTypes.string,
+            name: PropTypes.string,
+            price: PropTypes.number,
+            count: PropTypes.number,
         }),
+    onRemoveItem: PropTypes.func.isRequired,
+    onChangeCount: PropTypes.func.isRequired,
 };
 
 export default CartItem;
