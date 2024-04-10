@@ -1,4 +1,5 @@
-import styles from'./style.module.scss';
+import styles from './style.module.scss';
+// import Button from '../Button/index';
 
 const CartInputForm = () => (
     <div className={styles.cartInputForm}>
@@ -11,6 +12,11 @@ const CartInputForm = () => (
             <label className={styles.label}> 
                 <span className={styles.span}>price</span>
                 <input type='number'></input>
+            </label>
+
+            <label className={styles.label}> 
+                <span>extended guarantee</span>
+                <input type='checkbox'></input>
             </label>
 
             <button className={styles.buttonAdd} type='submit'>+add</button>
