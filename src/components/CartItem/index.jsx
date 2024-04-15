@@ -1,7 +1,8 @@
+
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
 import { CloseButton } from '../Button/index'
-import styles from './style.module.scss'
+// import styles from './style.module.scss'
 
 const useStyles = createUseStyles({
     CartItem: {
@@ -9,13 +10,13 @@ const useStyles = createUseStyles({
         padding: 10,
         alignItems: 'center',
         columnGap: 30,
-        backgroundColor: 'aqua',
+        backgroundColor: 'rgb(246, 221, 190)',
         width: '100%',
         justifyContent: 'space-between',
     },
     column: {
         display: 'flex',
-        flexDirection: 'column',
+        gap: 10,
     },
     counter: {
         display: 'flex',
@@ -31,12 +32,15 @@ const useStyles = createUseStyles({
 });
 
 const CartItem = ({ item, onRemoveItem, onChangeCount }) => {
+
     const styles =useStyles({ item });
     const amount = item.count * item.price;
     
     const decrement = () => onChangeCount(item.id, -1);
     const increment = () => onChangeCount(item.id, +1);
     const remove = () => onRemoveItem(item.id);
+
+    console.log('render item', item.id);
 
     return (
         <div className={styles.CartItem}>
@@ -53,7 +57,10 @@ const CartItem = ({ item, onRemoveItem, onChangeCount }) => {
                 </span>
             </div>
 
-            <span>{amount}$</span>
+            <span className={styles.amount}>
+                {amount}$
+                {item.extendedGuarantee && ' +10%'}
+            </span>
             <CloseButton item={item} onRemoveItem={remove}/>
         </div>
     );

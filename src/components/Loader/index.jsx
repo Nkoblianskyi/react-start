@@ -1,6 +1,7 @@
+import styles from './styles.modules.css';
 
 const Loader = () => (
-    <p>
+    <p className={styles.loader}>
         Loading...
     </p>
 );

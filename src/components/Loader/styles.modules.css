@@ -1,0 +1,7 @@
+.loader p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: green;
+    font-weight: 800;
+}
